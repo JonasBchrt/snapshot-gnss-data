@@ -32,12 +32,27 @@ Open ground truth file of type gpx.
 array([ 1,  1,  1, ..., -1, -1, -1], dtype=int8)
 ```
 
+To view an estimate of the intermediate frequency at which the GNSS signal was recorded, type
+
+```
+>>> ds.get_intermediate_frequency()
+4091232.0
+```
+
+To obtain the timestamps that are associated with the recorded snapshots, type
+
+```
+>>> ds.get_timestamps()
+```
+
 If you calculated a position from the raw snapshot and want to compare it to the ground truth, type
 
 ```python repl
 >>> ds.get_error(my_estimated_latitude, my_estimated_longitude)
 2.3513792721992006
 ```
+
+
 
 To view the full class documentation, type
 
