@@ -43,6 +43,8 @@ To obtain the timestamps that are associated with the recorded snapshots, type
 
 ```
 >>> ds.get_timestamps()
+array(['2021-03-24T10:37:46.000', ..., '2021-03-24T11:42:19.000'],
+      dtype='datetime64[ms]')
 ```
 
 If you calculated a position from the raw snapshot and want to compare it to the ground truth, type
@@ -51,8 +53,6 @@ If you calculated a position from the raw snapshot and want to compare it to the
 >>> ds.get_error(my_estimated_latitude, my_estimated_longitude)
 2.3513792721992006
 ```
-
-
 
 To view the full class documentation, type
 
