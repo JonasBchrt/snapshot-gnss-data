@@ -34,14 +34,14 @@ array([ 1,  1,  1, ..., -1, -1, -1], dtype=int8)
 
 To view an estimate of the intermediate frequency at which the GNSS signal was recorded, type
 
-```
+```python repl
 >>> ds.get_intermediate_frequency()
 4091232.0
 ```
 
 To obtain the timestamps that are associated with the recorded snapshots, type
 
-```
+```python repl
 >>> ds.get_timestamps()
 array(['2021-03-24T10:37:46.000', ..., '2021-03-24T11:42:19.000'],
       dtype='datetime64[ms]')
