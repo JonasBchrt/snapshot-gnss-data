@@ -57,7 +57,6 @@ If you calculated a position from the raw snapshot and want to compare it to the
 To view the full class documentation, type
 
 ```python repl
->>> import dataset
 >>> help(dataset.Dataset)
 Help on class Dataset in module dataset:
 
