@@ -1,6 +1,6 @@
 *This is a test repository. Once I am certain that I am going into the right direction, I will move everything to a fresh repository `snapshot-gnss-data` that will eventually go public.*
 
-# GNSS Snapshot Utilities
+# GNSS Snapshot Dataset Utilities
 
 Author: *Jonas Beuchert*
 
