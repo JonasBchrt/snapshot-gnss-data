@@ -32,6 +32,13 @@ Open ground truth file of type gpx.
 array([ 1,  1,  1, ..., -1, -1, -1], dtype=int8)
 ```
 
+If you calculated a position from the raw snapshot and want to compare it to the ground truth, type
+
+```python repl
+>>> ds.get_error(my_estimated_latitude, my_estimated_longitude)
+2.3513792721992006
+```
+
 To view the full class documentation, type
 
 ```python repl
