@@ -1,0 +1,3 @@
+numpy
+pymap3d
+Shapely
