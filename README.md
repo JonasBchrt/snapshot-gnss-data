@@ -194,3 +194,4 @@ class Dataset(builtins.object)
  |  __weakref__
  |      list of weak references to the object (if defined)
 ```
+Still questions? [Go to Discussions](https://github.com/JonasBchrt/snapshot-gnss-data-test/discussions) or [open an Issue](https://github.com/JonasBchrt/snapshot-gnss-data-test/issues).
