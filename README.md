@@ -22,7 +22,17 @@ python -m pip install -r requirements.txt
 
 ## Usage
 
-You can view the class documentation in Python by doing
+If you want to read the GNSS signal snapshot with index 19 from the dataset stored in the directory `data/J`, then type
+
+```python repl
+>>> import dataset
+>>> ds = dataset.Dataset("data/J")
+Open ground truth file of type gpx.
+>>> ds.get_snapshot(19)
+array([ 1,  1,  1, ..., -1, -1, -1], dtype=int8)
+```
+
+To view the full class documentation, type
 
 ```python repl
 >>> import dataset
