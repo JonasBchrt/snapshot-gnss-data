@@ -22,7 +22,7 @@ python -m pip install -r requirements.txt
 
 ## Usage
 
-If you want to read the GNSS signal snapshot with index 19 from the dataset stored in the directory `data/J`, then type
+If you want to read the GNSS signal snapshot with index `19` from the dataset stored in the directory `data/J`, then type
 
 ```python repl
 >>> import dataset
