@@ -10,7 +10,7 @@ This repository contains open-source Python utilities to read the raw GNSS snaps
 
 *TODO*
 
-##Dependencies
+## Dependencies
 
 The code was tested with *Python 3.7.10 on Ubuntu 18 and macOS Big Sur and* with Python 3.7.7 on Windows 10.
 
