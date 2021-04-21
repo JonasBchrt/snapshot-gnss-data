@@ -8,14 +8,158 @@ This repository contains open-source Python utilities to read the raw GNSS snaps
 
 > *Data citation, including DOI.*
 
-*TODO*
+The class `dataset.Dataset` can represent a single dataset that was recorded with a SnapperGPS receiver and offers methods to access the data.
 
 ## Dependencies
 
 The code was tested with *Python 3.7.10 on Ubuntu 18 and macOS Big Sur and* with Python 3.7.7 on Windows 10.
 
-The basic functionality requires `numpy`. In addition, working with ground truth data requires `pymap3d` and `shapely`. You can install all three packages via `pip`
+The basic functionality requires `numpy`. In addition, working with ground truth data requires `pymap3d` and `Shapely`. You can install all three packages via `pip`
 
 ```shell
 python -m pip install -r requirements.txt
+```
+
+## Usage
+
+You can view the class documentation in Python by doing
+
+```python repl
+>>> import dataset
+>>> help(dataset.Dataset)
+Help on class Dataset in module dataset:
+
+class Dataset(builtins.object)
+ |  Dataset(directory)
+ |  
+ |  GNSS snapshot dataset representation.
+ |  
+ |  Methods
+ |  -------
+ |  get_size()
+ |      Get number of snapshots in dataset, i.e., size of dataset.
+ |  get_snapshot(idx, normalize=False)
+ |      Get specific raw GNSS signal snapshot.
+ |  get_ground_truth()
+ |      Get ground truth location or track.
+ |  get_intermediate_frequency()
+ |      Get intermediate frequency.
+ |  get_timestamps()
+ |      Get all times when measurements were taken / snapshots were captured.
+ |  get_temperatures()
+ |      Get all temperature measurements.
+ |  get_pressures()
+ |      Get all pressure measurements.
+ |  get_error(self, latitude, longitude)
+ |      Calculate horizontal error w.r.t. ground truth point / track.
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, directory)
+ |      Create snapshot dataset representation.
+ |      
+ |      Parameters
+ |      ----------
+ |      directory : string
+ |          Dataset directory that contains the binary raw data as .bin files,
+ |          other data as meta.json file, and potentially ground truth tracks
+ |          as .kml or .gpx file(s).
+ |      
+ |      Returns
+ |      -------
+ |      None.
+ |  
+ |  get_error(self, latitude, longitude)
+ |      Calculate horizontal error w.r.t. ground truth point / track.
+ |      
+ |      Parameters
+ |      ----------
+ |      latitude : float
+ |          Latitude of test location [°].
+ |      longitude : float
+ |          Longitude of test location [°].
+ |      
+ |      Returns
+ |      -------
+ |      float
+ |          Horizontal (2D) Euclidean distance [m] between test location and
+ |          ground truth location / or next location on ground truth track.
+ |  
+ |  get_ground_truth(self)
+ |      Get ground truth location or track.
+ |      
+ |      Returns
+ |      -------
+ |      dict {"latitude": float, "longitude": float}
+ |      or list of dict {"latitude": float, "longitude": float}
+ |          Dictionary with static ground truth location or list of
+ |          dictionaries for ground truth track. The list defines a polyline,
+ |          which nodes are not directly related to snapshots.
+ |  
+ |  get_intermediate_frequency(self)
+ |      Get intermediate frequency.
+ |      
+ |      Returns
+ |      -------
+ |      float
+ |          Intermediate frequency [Hz].
+ |  
+ |  get_pressures(self)
+ |      Get all pressure measurements.
+ |      
+ |      Returns
+ |      -------
+ |      numpy.ndarray, dtype=float64, shape=(N,)
+ |          List of ambient pressures [Pa].
+ |  
+ |  get_size(self)
+ |      Get number of snapshots in dataset, i.e., size of dataset.
+ |      
+ |      Returns
+ |      -------
+ |      int
+ |          Number of snapshots in dataset.
+ |  
+ |  get_snapshot(self, idx, normalize=False)
+ |      Get specific raw GNSS signal snapshot.
+ |      
+ |      Parameters
+ |      ----------
+ |      idx : int
+ |          Index of file / snapshot.
+ |      normalize : bool, optional
+ |          Subtract mean from signal. The default is False.
+ |      
+ |      Returns
+ |      -------
+ |      np.ndarray, dtype=int8 if normalize=False, dtype=float32 if
+ |      normalize=True, shape=(49104,)
+ |          Binary raw GNSS snapshot with length 12 ms sampled at 4.092 MHz.
+ |          Samples element of {-1, +1} if normalize=False.
+ |          DC component removed, i.e., mean subtracted if normalize=True.
+ |  
+ |  get_temperatures(self)
+ |      Get all temperature measurements.
+ |      
+ |      Returns
+ |      -------
+ |      numpy.ndarray, dtype=float64, shape=(N,)
+ |          List of ambient temperatures [°C].
+ |  
+ |  get_timestamps(self)
+ |      Get all times when measurements were taken / snapshots were captured.
+ |      
+ |      Returns
+ |      -------
+ |      numpy.ndarray, dtype=numpy.datetime64[ms], shape=(N,1)
+ |          Timestamps in UTC.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
 ```
