@@ -72,8 +72,8 @@ class Dataset:
             self._filenames = None
             print(f"No filenames in {meta_file}.")
         try:
-            self._timestamps = [np.datetime64(d)
-                                for d in meta_data["timestamp"]]
+            self._timestamps = np.array([np.datetime64(d)
+                                         for d in meta_data["timestamp"]])
         except KeyError:
             self._timestamps = None
             print(f"No timestamps in {meta_file}.")
