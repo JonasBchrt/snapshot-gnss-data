@@ -187,7 +187,7 @@ class Dataset(builtins.object)
  |      
  |      Returns
  |      -------
- |      numpy.ndarray, dtype=numpy.datetime64[ms], shape=(N,1)
+ |      numpy.ndarray, dtype=numpy.datetime64[ms], shape=(N,)
  |          Timestamps in UTC.
  |  
  |  ----------------------------------------------------------------------
