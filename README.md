@@ -10,6 +10,11 @@ This repository contains open-source Python utilities to read the raw GNSS snaps
 
 The class `dataset.Dataset` can represent a single dataset that was recorded with a SnapperGPS receiver and offers methods to access the data.
 
+## Table of Contents
+1. [Dependencies](#dependencies)
+2. [Usage](#usage)
+3. [Data](#data)
+
 ## Dependencies
 
 The code was tested with Python 3.7.10 on Ubuntu 18 and macOS Big Sur and with Python 3.7.7 on Windows 10.
@@ -196,7 +201,7 @@ class Dataset(builtins.object)
 ```
 Still questions? [Go to Discussions](https://github.com/JonasBchrt/snapshot-gnss-data-test/discussions) or [open an Issue](https://github.com/JonasBchrt/snapshot-gnss-data-test/issues).
 
-## Data Collection Description
+## Data
 
 We published a detailed description of the data collection together with the collection itself, but here is a summary:
 
@@ -204,7 +209,7 @@ We recorded the data in 2020 and 2021 using three of our SnapperGPS low-cost rec
 
 The data collection consists of four static and seven dynamic tests under various conditions with 3700 GNSS signal snapshots in total.
 We captured the 225 static snapshots on a hill top, on a bridge, in a courtyard, and in a park in 5-30 s intervals and the 3475 dynamic ones while cycling in either urban or rural environments and using 20 s intervals.
-We obtained ground truth locations or tracks either by using an Ordenance Survey trig point (one test), by employing satellite imagery from Google Maps or Google Earth (seven tests), or with a moto c smartphone with built-in GPS and A-GPS receiver (four tests).
+We obtained ground truth locations or tracks either by using an [Ordenance Survey trig point](https://www.ordnancesurvey.co.uk/gps/legacy-control-information/triangulation-stations) (one test), by employing satellite imagery from [Google Maps](https://www.google.com/maps) or [Google Earth](https://www.google.com/earth/) (seven tests), or with a [moto c](https://www.motorola-support.com/uk-en/?page=device/motorola/moto-c/specifications) smartphone with built-in GPS and A-GPS receiver (four tests).
 While the trig point provides a ground-truth position with centimetre-level accuracy, the positions obtained from satellite imagery or with the moto c are up to 5 m wrong with outliers up to 10 m.
 
 | dataset | size | type    | location    | ground truth          | temperatures & pressures |
