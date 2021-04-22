@@ -4,16 +4,16 @@
 
 Author: *Jonas Beuchert*
 
-Is this :point_up: title too long? The let us break it down:
+Is this :point_up: title too long? Then let us break it down:
 
-* There are several Global Navigation Satellite Systems (***GNSS***), e.g., GPS, Galileo, and BeiDou, which allow us to localise humans, objects, or animals anywhere on the Earth.
+* There are several Global Navigation Satellite Systems (***GNSS***), e.g., GPS, Galileo, and BeiDou, which allow us to localise humans, objects, and animals anywhere on the Earth.
 * The satellites of these systems orbit the Earth and broadcast ***signals*** to its surface.
-* We built an energy-efficient low-cost receiver that captures short twelve-millisecond ***snapshots*** of these signals.
+* We built an energy-efficient low-cost receiver - called SnapperGPS -  that captures short twelve-millisecond ***snapshots*** of these signals.
 * After months of testing, we ended up with many ***datasets*** that contain thousands of these snapshots in total:
-*     
+
 > *Data citation, including DOI.*
 
-* This repository contains open-source Python ***utilities*** to simplify working with the raw signal snapshots from the dataset if you want to use them for your own project, e.g., to develop your own GNSS satellite acquisition or positioning algorithms.
+* This repository provides open-source Python ***utilities*** to simplify working with the raw signal snapshots from the dataset if you want to use them for your own project, e.g., to develop your own GNSS satellite acquisition or positioning algorithms.
 
 The basic idea is that the class `dataset.Dataset` can represent a single dataset that was recorded with a SnapperGPS receiver and offers methods to access the data.
 
@@ -66,7 +66,7 @@ If you calculated a position from the raw snapshot and want to compare it to the
 2.3513792721992006
 ```
 
-To view the full class documentation, type
+There are more methods. To view the full class documentation, type
 
 ```python repl
 >>> help(dataset.Dataset)
@@ -97,4 +97,4 @@ While the trig point provides a ground-truth position with centimetre-level accu
 | `J`     |  346 | dynamic | urban/rural | moto c                | yes                      |
 | `K`     |   66 | dynamic | urban       | moto c                | yes                      |
 
-The eleven datasets are stored in one folder per set named `A`-`K`. Each snapshot is a single binary `.bin` file with a name derived from the timestamp. One byte of the file holds the amplitude values of eight signal samples, i.e., the first byte holds the first eight samples. A zero bit represents a signal amplitude of +1 and a one bit a signal amplitude of -1. The order of the bits is 'little', i.e., reversed. For example, the byte `0b01100000` corresponds to the signal chunk `[1  1  1  1  1 -1 -1  1]`. In addition to the raw GNSS signal snapshots, you can find more data in a single `meta.json` file in each folder. The JSON struct in this file provides approximate `latitude` and `longitude` of the ground truth location of a static test in decimal degrees, an estimate of the true `intermediate_frequency` in Hertz (the actual value differs from the nominal 4.092 MHz due to imprecissions of the hardware), all the `file` names of the binary files, the UTC `timestamp`s of all files, and optionally `temperature` and `pressure` measurements from an on-board [BMP280](https://www.bosch-sensortec.com/products/environmental-sensors/pressure-sensors/bmp280/) sensor in degrees Celsius and Pascal, respectively. Furthermore, a `.gpx` or `.kml` file contains the ground truth track for a dynamic test as nodes of a polyline. Folder `I` contains two files that represent the first and the second part of the track, respectively. Finally, each folder contains the broadcasted satellite navigation data form the respective day as RINEX 3.04 `.rnx` file downlaoded from [NASA's archive](https://cddis.nasa.gov/archive/gnss/data/daily/). The RINEX files allow to calculate, e.g., satellite orbits and clock corrections for all GNSS.
+The eleven datasets are stored in one folder per set named `A`-`K`. Each snapshot is a single binary `.bin` file with a name derived from the timestamp. One byte of the file holds the amplitude values of eight signal samples, i.e., the first byte holds the first eight samples. A zero bit represents a signal amplitude of +1 and a one bit a signal amplitude of -1. The order of the bits is 'little', i.e., reversed. For example, the byte `0b01100000` corresponds to the signal chunk `[1  1  1  1  1 -1 -1  1]`. In addition to the raw GNSS signal snapshots, you can find more data in a single `meta.json` file in each folder. The JSON struct in this file provides approximate `latitude` and `longitude` of the ground truth location of a static test in decimal degrees, an estimate of the true `intermediate_frequency` in Hertz (the actual value differs from the nominal 4.092 MHz due to imprecissions of the hardware), all the `file` names of the binary files, the UTC `timestamp`s of all files, and optionally `temperature` and `pressure` measurements from an on-board [BMP280](https://www.bosch-sensortec.com/products/environmental-sensors/pressure-sensors/bmp280/) sensor in degrees Celsius and Pascal, respectively. Furthermore, a `.gpx` or `.kml` file holds the ground truth track for a dynamic test as nodes of a polyline. Folder `I` contains two files that represent the first and the second part of the track, respectively. Finally, each folder incorporates the broadcasted satellite navigation data from the respective day as RINEX 3.04 `.rnx` file downloaded from [NASA's archive](https://cddis.nasa.gov/archive/gnss/data/daily/). The RINEX files allow to calculate, e.g., satellite orbits and clock corrections for all GNSS.
