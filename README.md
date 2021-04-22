@@ -195,3 +195,16 @@ class Dataset(builtins.object)
  |      list of weak references to the object (if defined)
 ```
 Still questions? [Go to Discussions](https://github.com/JonasBchrt/snapshot-gnss-data-test/discussions) or [open an Issue](https://github.com/JonasBchrt/snapshot-gnss-data-test/issues).
+
+## Data Collection Description
+
+We published a detailed description of the data collection together with the collection itself, but here is a summary:
+
+We recorded the data in 2020 and 2021 using three of our SnapperGPS low-cost receivers, which core components are an Echo27 GPS L1 antenna and a SE4150L integrated GPS receiver circuit. Like most civilian low-cost GPS receivers, SnapperGPS operates in the L1 band with a centre frequency of 1.57542 GHz. However, Galileo's E1 signal, BeiDou's B1C signal, GPS' novel L1C signal, and SBAS' L1 signal  have the identical centre frequency. So, we captured those signals, too. A SnapperGPS receiver down-mixes the incoming signal to a nominal intermediate frequency of 4.092 MHz, samples the resulting near-baseband signal at 4.092 MHz and digitises it with an amplitude resolution of one bit per sample. It considers only the in-phase component and discards the quadrature component.
+
+The data collection consists of four static and seven dynamic tests under various conditions with 3700 GNSS signal snapshots in total.
+We captured the 225 static snapshots on a hill top, on a bridge, in a courtyard, and in a park in 5-30 s intervals and the 3475 dynamic ones while cycling in either urban or rural environments and using 20 s intervals.
+We obtained ground truth locations or tracks either by using an Ordenance Survey trig point (one test), by employing satellite imagery from Google Maps or Google Earth (seven tests), or with a moto c smartphone with built-in GPS and A-GPS receiver (four tests).
+While the trig point provides a ground-truth position with centimetre-level accuracy, the positions obtained from satellite imagery or with the moto c are up to 5 m wrong with outliers up to 10 m.
+
+The eleven datasets are stored in one folder per set named A-K. Each snapshot is a single binary `.bin` file with a name derived from the timestamp. One byte of the file holds the amplitude values of eight signal samples, i.e., the first byte holds the first eight samples. A zero bit represents a signal amplitude of +1 and a one bit a signal amplitude of -1. The order of the bits is 'little', i.e., reversed. For example, the byte `0b01100000` corresponds to the signal chunk `[ 1  1  1  1  1 -1 -1  1]`. In addition to the raw GNSS signal sanpshots, you can find more data in a single `meta.json` file in each folder. The `json` structs in these files provide approximate `latitude` and `longitude` of the ground truth locations of the static tests in decimal degrees, an estimate of the true `intermediate_frequency` in Hertz (the actual value differs from the nominal 4.092 MHz due to imprecissions of the hardware), all the `file` names of the binary files, the UTC `timestamp`s of all files, and optionally `temperature` and `pressure` measurements from on-board sensors in degrees Celsius or Pascal. Finally, a `.gpx` or `.kml` file provides the ground truth track for a dynamic test as a nodes of a polyline. Folder `I` contains two files that represent the first and the second part of the experiment, respectively.
