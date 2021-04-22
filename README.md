@@ -10,7 +10,7 @@ This repository contains open-source Python utilities to read the raw GNSS snaps
 
 The class `dataset.Dataset` can represent a single dataset that was recorded with a SnapperGPS receiver and offers methods to access the data.
 
-## Table of Contents
+**Table of Contents**
 1. [Dependencies](#dependencies)
 2. [Usage](#usage)
 3. [Data](#data)
@@ -205,7 +205,7 @@ Still questions? [Go to Discussions](https://github.com/JonasBchrt/snapshot-gnss
 
 We published a detailed description of the data collection together with the collection itself, but here is a summary:
 
-We recorded the data in 2020 and 2021 using three of our SnapperGPS low-cost receivers, which core components are an Echo27 GPS L1 antenna and a SE4150L integrated GPS receiver circuit. Like most civilian low-cost GPS receivers, SnapperGPS operates in the L1 band with a centre frequency of 1.57542 GHz. However, Galileo's E1 signal, BeiDou's B1C signal, GPS' novel L1C signal, and SBAS' L1 signal  have the identical centre frequency. So, we captured those signals, too. A SnapperGPS receiver down-mixes the incoming signal to a nominal intermediate frequency of 4.092 MHz, samples the resulting near-baseband signal at 4.092 MHz and digitises it with an amplitude resolution of one bit per sample. It considers only the in-phase component and discards the quadrature component.
+We recorded the data in 2020 and 2021 using three of our SnapperGPS low-cost receivers, which core components are an [Echo 27](https://www.siretta.com/products/antennas/echo-27/) GPS L1 antenna and a [SE4150L](https://www.skyworksinc.com/Products/Amplifiers/SE4150L) integrated GPS receiver circuit. Like most civilian low-cost GPS receivers, SnapperGPS operates in the L1 band with a centre frequency of 1.57542 GHz. However, Galileo's E1 signal, BeiDou's B1C signal, GPS' novel L1C signal, and SBAS' L1 signal have the identical centre frequency. So, we captured those signals, too. A SnapperGPS receiver down-mixes the incoming signal to a nominal intermediate frequency of 4.092 MHz, samples the resulting near-baseband signal at 4.092 MHz and digitises it with an amplitude resolution of one bit per sample. It considers only the in-phase component and discards the quadrature component.
 
 The data collection consists of four static and seven dynamic tests under various conditions with 3700 GNSS signal snapshots in total.
 We captured the 225 static snapshots on a hill top, on a bridge, in a courtyard, and in a park in 5-30 s intervals and the 3475 dynamic ones while cycling in either urban or rural environments and using 20 s intervals.
