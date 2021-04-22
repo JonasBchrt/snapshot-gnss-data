@@ -80,8 +80,8 @@ We recorded the data in 2020 and 2021 using three of our SnapperGPS low-cost rec
 
 The data collection consists of four static and seven dynamic tests under various conditions with 3700 GNSS signal snapshots in total.
 We captured the 225 static snapshots on a hill top, on a bridge, in a courtyard, and in a park in 5-30 s intervals and the 3475 dynamic ones while cycling in either urban or rural environments and using 20 s intervals.
-We obtained ground truth locations or tracks either by using an [Ordnance Survey trig point](https://www.ordnancesurvey.co.uk/gps/legacy-control-information/triangulation-stations), by employing satellite imagery from [Google Maps](https://www.google.com/maps) or [Google Earth](https://www.google.com/earth/), or with a [moto c](https://www.motorola-support.com/uk-en/?page=device/motorola/moto-c/specifications) smartphone with built-in GPS and A-GPS receiver.
-While the trig point provides a ground-truth position with centimetre-level accuracy, the positions obtained from satellite imagery or with the moto c are up to 5 m wrong with outliers up to 10 m.
+We obtained ground truth locations or tracks either by using an [Ordnance Survey trig point](https://www.ordnancesurvey.co.uk/gps/legacy-control-information/triangulation-stations), by employing satellite imagery from [Google Maps](https://www.google.com/maps) or [Google Earth](https://www.google.com/earth/), or with a [Moto C](https://www.motorola-support.com/uk-en/?page=device/motorola/moto-c/specifications) smartphone with built-in GPS and A-GPS receiver.
+While the trig point provides a ground-truth position with centimetre-level accuracy, the positions obtained from satellite imagery or with the Moto C are up to 5 m wrong with outliers up to 10 m.
 
 | dataset | size | type    | location    | ground truth          | temperatures & pressures |
 |:-------:| ----:|:-------:|:-----------:|:---------------------:|:------------------------:|
@@ -92,9 +92,10 @@ While the trig point provides a ground-truth position with centimetre-level accu
 | `E`     |  380 | dynamic | urban       | Google Earth          | yes                      |
 | `F`     |  339 | dynamic | urban       | Google Earth          | yes                      |
 | `G`     |  693 | dynamic | urban/rural | Google Earth          | yes                      |
-| `H`     |  628 | dynamic | urban       | moto c                | yes                      |
-| `I`     | 1023 | dynamic | urban/rural | Google Earth / moto c | yes                      |
-| `J`     |  346 | dynamic | urban/rural | moto c                | yes                      |
-| `K`     |   66 | dynamic | urban       | moto c                | yes                      |
+| `H`     |  628 | dynamic | urban       | 
+| yes                      |
+| `I`     | 1023 | dynamic | urban/rural | Google Earth / Moto C | yes                      |
+| `J`     |  346 | dynamic | urban/rural | Moto C                | yes                      |
+| `K`     |   66 | dynamic | urban       | Moto C                | yes                      |
 
 The eleven datasets are stored in one folder per set named `A`-`K`. Each snapshot is a single binary `.bin` file with a name derived from the timestamp. One byte of the file holds the amplitude values of eight signal samples, i.e., the first byte holds the first eight samples. A zero bit represents a signal amplitude of +1 and a one bit a signal amplitude of -1. The order of the bits is 'little', i.e., reversed. For example, the byte `0b01100000` corresponds to the signal chunk `[1  1  1  1  1 -1 -1  1]`. In addition to the raw GNSS signal snapshots, you can find more data in a single `meta.json` file in each folder. The JSON struct in this file provides approximate `latitude` and `longitude` of the ground truth location of a static test in decimal degrees, an estimate of the true `intermediate_frequency` in Hertz (the actual value differs from the nominal 4.092 MHz due to imprecissions of the hardware), all the `file` names of the binary files, the UTC `timestamp`s of all files, and optionally `temperature` and `pressure` measurements from an on-board [BMP280](https://www.bosch-sensortec.com/products/environmental-sensors/pressure-sensors/bmp280/) sensor in degrees Celsius and Pascal, respectively. Furthermore, a `.gpx` or `.kml` file holds the ground truth track for a dynamic test as nodes of a polyline. Folder `I` contains two files that represent the first and the second part of the track, respectively. Finally, each folder incorporates the broadcasted satellite navigation data from the respective day as RINEX 3.04 `.rnx` file downloaded from [NASA's archive](https://cddis.nasa.gov/archive/gnss/data/daily/). The RINEX files allow to calculate, e.g., satellite orbits and clock corrections for all GNSS.
