@@ -4,11 +4,18 @@
 
 Author: *Jonas Beuchert*
 
-This repository contains open-source Python utilities to read the raw Global Navigation Satellite System (GNSS) signal snapshots from the dataset
+Is this :point_up: title too long? The let us break it down:
 
+*     There are several Global Navigation Satellite Systems (***GNSS***), e.g., GPS, Galileo, and BeiDou, which allow us to localise humans, objects, or animals anywhere on the Earth.
+*     The satellites of these systems orbit the Earth and broadcast ***signals*** to its surface.
+*     We built an energy-efficient low-cost receiver that captures short twelve-millisecond ***snapshots*** of these signals.
+*     After months of testing, we ended up with many ***datasets*** that contain thousands of these snapshots in total:
+*     
 > *Data citation, including DOI.*
 
-The class `dataset.Dataset` can represent a single dataset that was recorded with a SnapperGPS receiver and offers methods to access the data.
+*     This repository contains open-source Python ***utilities*** to simplify working with the raw signal snapshots from the dataset if you want to use them for your own project, e.g., to develop your own GNSS satellite acquisition or positioning algorithms.
+
+The basic idea is that the class `dataset.Dataset` can represent a single dataset that was recorded with a SnapperGPS receiver and offers methods to access the data.
 
 **Table of Contents**
 1. [Dependencies](#dependencies)
@@ -27,7 +34,7 @@ python -m pip install -r requirements.txt
 
 ## Usage
 
-If you want to read the GNSS signal snapshot with index `19` from the dataset stored in the directory `data/J`, then type
+First, [download the data](doi). For a detailed description of its structure, see Section [Data](#data). Just note that you will end up with eleven folders named `A`-`K`, each of which contains one signal snapshot dataset. If you want to read the GNSS signal snapshot with index `19` from the dataset stored in the directory `data/J`, then type
 
 ```python repl
 >>> import dataset
@@ -63,147 +70,11 @@ To view the full class documentation, type
 
 ```python repl
 >>> help(dataset.Dataset)
-Help on class Dataset in module dataset:
-
-class Dataset(builtins.object)
- |  Dataset(directory)
- |  
- |  GNSS snapshot dataset representation.
- |  
- |  Methods
- |  -------
- |  get_size()
- |      Get number of snapshots in dataset, i.e., size of dataset.
- |  get_snapshot(idx, normalize=False)
- |      Get specific raw GNSS signal snapshot.
- |  get_ground_truth()
- |      Get ground truth location or track.
- |  get_intermediate_frequency()
- |      Get intermediate frequency.
- |  get_timestamps()
- |      Get all times when measurements were taken / snapshots were captured.
- |  get_temperatures()
- |      Get all temperature measurements.
- |  get_pressures()
- |      Get all pressure measurements.
- |  get_error(self, latitude, longitude)
- |      Calculate horizontal error w.r.t. ground truth point / track.
- |  
- |  Methods defined here:
- |  
- |  __init__(self, directory)
- |      Create snapshot dataset representation.
- |      
- |      Parameters
- |      ----------
- |      directory : string
- |          Dataset directory that contains the binary raw data as .bin files,
- |          other data as meta.json file, and potentially ground truth tracks
- |          as .kml or .gpx file(s).
- |      
- |      Returns
- |      -------
- |      None.
- |  
- |  get_error(self, latitude, longitude)
- |      Calculate horizontal error w.r.t. ground truth point / track.
- |      
- |      Parameters
- |      ----------
- |      latitude : float
- |          Latitude of test location [°].
- |      longitude : float
- |          Longitude of test location [°].
- |      
- |      Returns
- |      -------
- |      float
- |          Horizontal (2D) Euclidean distance [m] between test location and
- |          ground truth location / or next location on ground truth track.
- |  
- |  get_ground_truth(self)
- |      Get ground truth location or track.
- |      
- |      Returns
- |      -------
- |      dict {"latitude": float, "longitude": float}
- |      or list of dict {"latitude": float, "longitude": float}
- |          Dictionary with static ground truth location or list of
- |          dictionaries for ground truth track. The list defines a polyline,
- |          which nodes are not directly related to snapshots.
- |  
- |  get_intermediate_frequency(self)
- |      Get intermediate frequency.
- |      
- |      Returns
- |      -------
- |      float
- |          Intermediate frequency [Hz].
- |  
- |  get_pressures(self)
- |      Get all pressure measurements.
- |      
- |      Returns
- |      -------
- |      numpy.ndarray, dtype=float64, shape=(N,)
- |          List of ambient pressures [Pa].
- |  
- |  get_size(self)
- |      Get number of snapshots in dataset, i.e., size of dataset.
- |      
- |      Returns
- |      -------
- |      int
- |          Number of snapshots in dataset.
- |  
- |  get_snapshot(self, idx, normalize=False)
- |      Get specific raw GNSS signal snapshot.
- |      
- |      Parameters
- |      ----------
- |      idx : int
- |          Index of file / snapshot.
- |      normalize : bool, optional
- |          Subtract mean from signal. The default is False.
- |      
- |      Returns
- |      -------
- |      np.ndarray, dtype=int8 if normalize=False, dtype=float32 if
- |      normalize=True, shape=(49104,)
- |          Binary raw GNSS snapshot with length 12 ms sampled at 4.092 MHz.
- |          Samples element of {-1, +1} if normalize=False.
- |          DC component removed, i.e., mean subtracted if normalize=True.
- |  
- |  get_temperatures(self)
- |      Get all temperature measurements.
- |      
- |      Returns
- |      -------
- |      numpy.ndarray, dtype=float64, shape=(N,)
- |          List of ambient temperatures [°C].
- |  
- |  get_timestamps(self)
- |      Get all times when measurements were taken / snapshots were captured.
- |      
- |      Returns
- |      -------
- |      numpy.ndarray, dtype=numpy.datetime64[ms], shape=(N,)
- |          Timestamps in UTC.
- |  
- |  ----------------------------------------------------------------------
- |  Data descriptors defined here:
- |  
- |  __dict__
- |      dictionary for instance variables (if defined)
- |  
- |  __weakref__
- |      list of weak references to the object (if defined)
 ```
+
 Still questions? [Go to Discussions](https://github.com/JonasBchrt/snapshot-gnss-data-test/discussions) or [open an Issue](https://github.com/JonasBchrt/snapshot-gnss-data-test/issues).
 
 ## Data
-
-We published a detailed description of the data collection together with the collection itself, but here is a summary:
 
 We recorded the data in 2020 and 2021 using three of our SnapperGPS low-cost receivers, which core components are an [Echo 27](https://www.siretta.com/products/antennas/echo-27/) GPS L1 antenna and an [SE4150L](https://www.skyworksinc.com/Products/Amplifiers/SE4150L) integrated GPS receiver circuit. Like most civilian low-cost GPS receivers, SnapperGPS operates in the L1 band with a centre frequency of 1.57542 GHz. However, Galileo's E1 signal, BeiDou's B1C signal, GPS' novel L1C signal, and SBAS' L1 signal have the identical centre frequency. So, we captured those signals, too. A SnapperGPS receiver down-mixes the incoming signal to a nominal intermediate frequency of 4.092 MHz, samples the resulting near-baseband signal at 4.092 MHz and digitises it with an amplitude resolution of one bit per sample. It considers only the in-phase component and discards the quadrature component.
 
