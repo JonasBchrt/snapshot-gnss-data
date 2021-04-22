@@ -1,10 +1,10 @@
 *This is a test repository. Once I am certain that I am going into the right direction, I will move everything to a fresh repository `snapshot-gnss-data` that will eventually go public.*
 
-# GNSS Snapshot Dataset Utilities
+# GNSS Signal Snapshot Dataset Utilities
 
 Author: *Jonas Beuchert*
 
-This repository contains open-source Python utilities to read the raw GNSS snapshots from the dataset
+This repository contains open-source Python utilities to read the raw Global Navigation Satellite System (GNSS) signal snapshots from the dataset
 
 > *Data citation, including DOI.*
 
@@ -226,4 +226,4 @@ While the trig point provides a ground-truth position with centimetre-level accu
 | `J`     |  346 | dynamic | urban/rural | moto c                | yes                      |
 | `K`     |   66 | dynamic | urban       | moto c                | yes                      |
 
-The eleven datasets are stored in one folder per set named `A`-`K`. Each snapshot is a single binary `.bin` file with a name derived from the timestamp. One byte of the file holds the amplitude values of eight signal samples, i.e., the first byte holds the first eight samples. A zero bit represents a signal amplitude of +1 and a one bit a signal amplitude of -1. The order of the bits is 'little', i.e., reversed. For example, the byte `0b01100000` corresponds to the signal chunk `[1  1  1  1  1 -1 -1  1]`. In addition to the raw GNSS signal sanpshots, you can find more data in a single `meta.json` file in each folder. The JSON struct in this file provides approximate `latitude` and `longitude` of the ground truth location of a static test in decimal degrees, an estimate of the true `intermediate_frequency` in Hertz (the actual value differs from the nominal 4.092 MHz due to imprecissions of the hardware), all the `file` names of the binary files, the UTC `timestamp`s of all files, and optionally `temperature` and `pressure` measurements from an on-board [BMP280](https://www.bosch-sensortec.com/products/environmental-sensors/pressure-sensors/bmp280/) sensor in degrees Celsius and Pascal, respectively. Finally, a `.gpx` or `.kml` file contains the ground truth track for a dynamic test as nodes of a polyline. Folder `I` contains two files that represent the first and the second part of the track, respectively.
+The eleven datasets are stored in one folder per set named `A`-`K`. Each snapshot is a single binary `.bin` file with a name derived from the timestamp. One byte of the file holds the amplitude values of eight signal samples, i.e., the first byte holds the first eight samples. A zero bit represents a signal amplitude of +1 and a one bit a signal amplitude of -1. The order of the bits is 'little', i.e., reversed. For example, the byte `0b01100000` corresponds to the signal chunk `[1  1  1  1  1 -1 -1  1]`. In addition to the raw GNSS signal snapshots, you can find more data in a single `meta.json` file in each folder. The JSON struct in this file provides approximate `latitude` and `longitude` of the ground truth location of a static test in decimal degrees, an estimate of the true `intermediate_frequency` in Hertz (the actual value differs from the nominal 4.092 MHz due to imprecissions of the hardware), all the `file` names of the binary files, the UTC `timestamp`s of all files, and optionally `temperature` and `pressure` measurements from an on-board [BMP280](https://www.bosch-sensortec.com/products/environmental-sensors/pressure-sensors/bmp280/) sensor in degrees Celsius and Pascal, respectively. Finally, a `.gpx` or `.kml` file contains the ground truth track for a dynamic test as nodes of a polyline. Folder `I` contains two files that represent the first and the second part of the track, respectively.
