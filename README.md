@@ -207,8 +207,18 @@ We captured the 225 static snapshots on a hill top, on a bridge, in a courtyard,
 We obtained ground truth locations or tracks either by using an Ordenance Survey trig point (one test), by employing satellite imagery from Google Maps or Google Earth (seven tests), or with a moto c smartphone with built-in GPS and A-GPS receiver (four tests).
 While the trig point provides a ground-truth position with centimetre-level accuracy, the positions obtained from satellite imagery or with the moto c are up to 5 m wrong with outliers up to 10 m.
 
-| dataset | size | type    | location  | ground truth | temperatures & pressures |
-| ------- | ---- | ------- | --------- | ------------ | ------------------------ |
-| `A`     |  181 | static  | hill top  | trig point   | no                       |
+| dataset | size | type    | location    | ground truth          | temperatures & pressures |
+|:-------:| ----:|:-------:|:-----------:|:---------------------:|:------------------------:|
+| `A`     |  181 | static  | hill top    | trig point            | no                       |
+| `B`     |   14 | static  | bridge      | Google Maps           | no                       |
+| `C`     |    6 | static  | courtyard   | Google Maps           | no                       |
+| `D`     |   24 | static  | park        | Google Maps           | yes                      |
+| `E`     |  380 | dynamic | urban       | Google Earth          | yes                      |
+| `F`     |  339 | dynamic | urban       | Google Earth          | yes                      |
+| `G`     |  693 | dynamic | urban/rural | Google Earth          | yes                      |
+| `H`     |  628 | dynamic | urban       | moto c                | yes                      |
+| `I`     | 1023 | dynamic | urban/rural | Google Earth / moto c | yes                      |
+| `J`     |  346 | dynamic | urban/rural | moto c                | yes                      |
+| `A`     |   66 | dynamic | urban       | moto c                | yes                      |
 
 The eleven datasets are stored in one folder per set named `A`-`K`. Each snapshot is a single binary `.bin` file with a name derived from the timestamp. One byte of the file holds the amplitude values of eight signal samples, i.e., the first byte holds the first eight samples. A zero bit represents a signal amplitude of +1 and a one bit a signal amplitude of -1. The order of the bits is 'little', i.e., reversed. For example, the byte `0b01100000` corresponds to the signal chunk `[ 1  1  1  1  1 -1 -1  1]`. In addition to the raw GNSS signal sanpshots, you can find more data in a single `meta.json` file in each folder. The `json` structs in these files provide approximate `latitude` and `longitude` of the ground truth locations of the static tests in decimal degrees, an estimate of the true `intermediate_frequency` in Hertz (the actual value differs from the nominal 4.092 MHz due to imprecissions of the hardware), all the `file` names of the binary files, the UTC `timestamp`s of all files, and optionally `temperature` and `pressure` measurements from on-board sensors in degrees Celsius or Pascal. Finally, a `.gpx` or `.kml` file provides the ground truth track for a dynamic test as a nodes of a polyline. Folder `I` contains two files that represent the first and the second part of the experiment, respectively.
