@@ -6,14 +6,14 @@ Author: *Jonas Beuchert*
 
 Is this :point_up: title too long? The let us break it down:
 
-*     There are several Global Navigation Satellite Systems (***GNSS***), e.g., GPS, Galileo, and BeiDou, which allow us to localise humans, objects, or animals anywhere on the Earth.
-*     The satellites of these systems orbit the Earth and broadcast ***signals*** to its surface.
-*     We built an energy-efficient low-cost receiver that captures short twelve-millisecond ***snapshots*** of these signals.
-*     After months of testing, we ended up with many ***datasets*** that contain thousands of these snapshots in total:
+* There are several Global Navigation Satellite Systems (***GNSS***), e.g., GPS, Galileo, and BeiDou, which allow us to localise humans, objects, or animals anywhere on the Earth.
+* The satellites of these systems orbit the Earth and broadcast ***signals*** to its surface.
+* We built an energy-efficient low-cost receiver that captures short twelve-millisecond ***snapshots*** of these signals.
+* After months of testing, we ended up with many ***datasets*** that contain thousands of these snapshots in total:
 *     
 > *Data citation, including DOI.*
 
-*     This repository contains open-source Python ***utilities*** to simplify working with the raw signal snapshots from the dataset if you want to use them for your own project, e.g., to develop your own GNSS satellite acquisition or positioning algorithms.
+* This repository contains open-source Python ***utilities*** to simplify working with the raw signal snapshots from the dataset if you want to use them for your own project, e.g., to develop your own GNSS satellite acquisition or positioning algorithms.
 
 The basic idea is that the class `dataset.Dataset` can represent a single dataset that was recorded with a SnapperGPS receiver and offers methods to access the data.
 
