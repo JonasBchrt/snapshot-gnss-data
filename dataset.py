@@ -12,7 +12,7 @@ import numpy as np
 
 class Dataset:
     """
-    GNSS snapshot dataset representation.
+    GNSS signal snapshot dataset representation.
 
     Methods
     -------
@@ -92,7 +92,7 @@ class Dataset:
             print(f"No pressures in {meta_file}.")
 
         # Ground truth track for dynamic dataset
-        gt_files = glob.glob(os.path.join(directory, "ground_truth*"))
+        gt_files = sorted(glob.glob(os.path.join(directory, "ground_truth*")))
         if len(gt_files) > 0:
             try:
                 import pymap3d as pm
