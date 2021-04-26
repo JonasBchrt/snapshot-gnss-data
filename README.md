@@ -24,7 +24,7 @@ The basic idea is that the class `dataset.Dataset` can represent a single datase
 
 ## Dependencies
 
-The code was tested with Python 3.7.10 on Ubuntu 18.04 and macOS Big Sur and with Python 3.7.7 on Windows 10.
+The code was tested with Python 3.7.2 on Ubuntu 16.04, with Python 3.7.7 on Windows 10, and with Python 3.7.10 on Ubuntu 18.04 and macOS Big Sur.
 
 The basic functionality requires `numpy`. In addition, working with ground truth data requires `pymap3d` and `Shapely`. You can install all three packages via `pip` with the `requirements.txt` file in this repository
 
