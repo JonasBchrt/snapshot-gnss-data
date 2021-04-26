@@ -72,7 +72,7 @@ There are more methods. To view the full class documentation, type
 >>> help(dataset.Dataset)
 ```
 
-Still questions? [Go to Discussions](https://github.com/JonasBchrt/snapshot-gnss-data-test/discussions) or [open an Issue](https://github.com/JonasBchrt/snapshot-gnss-data-test/issues).
+Still questions? [Go to Discussions](https://github.com/JonasBchrt/snapshot-gnss-data/discussions) or [open an Issue](https://github.com/JonasBchrt/snapshot-gnss-data/issues).
 
 ## Data
 
