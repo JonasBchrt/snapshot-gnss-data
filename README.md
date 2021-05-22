@@ -11,7 +11,7 @@ Is this :point_up: title too long? Then let us break it down:
 * We built an energy-efficient low-cost receiver - called SnapperGPS -  that captures short twelve-millisecond ***snapshots*** of these signals.
 * After months of testing, we ended up with many ***datasets*** that contain thousands of these snapshots in total:
 
-> *Data citation, including DOI.*
+> Jonas Beuchert and Alex Rogers. 2021. SnapperGPS: Collection of GNSS Signal Snapshots. University of Oxford, Oxford, UK. (Under review.)
 
 * This repository provides open-source Python ***utilities*** to simplify working with the raw signal snapshots from the dataset if you want to use them for your own project, e.g., to develop your own GNSS satellite acquisition or positioning algorithms.
 
