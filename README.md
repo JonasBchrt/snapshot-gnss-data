@@ -9,7 +9,7 @@ Is this :point_up: title too long? Then let us break it down:
 * We built an energy-efficient low-cost receiver - called SnapperGPS -  that captures short twelve-millisecond ***snapshots*** of these signals.
 * After months of testing, we ended up with many ***datasets*** that contain thousands of these snapshots in total:
 
-> Jonas Beuchert and Alex Rogers. 2021. SnapperGPS: Collection of GNSS Signal Snapshots. University of Oxford, Oxford, UK. (Under review.)
+> Jonas Beuchert and Alex Rogers. 2021. SnapperGPS: Collection of GNSS Signal Snapshots. University of Oxford, Oxford, UK. https://doi.org/10.5287/bodleian:eXrp1xydM
 
 * This repository provides open-source Python ***utilities*** to simplify working with the raw signal snapshots from the dataset if you want to use them for your own project, e.g., to develop your own GNSS satellite acquisition or positioning algorithms.
 
@@ -32,7 +32,7 @@ python -m pip install -r requirements.txt
 
 ## Usage
 
-First, [download the data](doi). For a detailed description of its structure, see Section [Data](#data). Just note that you will end up with eleven folders named `A`-`K`, each of which contains one signal snapshot dataset. If you want to read the GNSS signal snapshot with index `19` from the dataset stored in the directory `data/J`, then type
+First, [download the data](https://doi.org/10.5287/bodleian:eXrp1xydM). For a detailed description of its structure, see Section [Data](#data). Just note that you will end up with eleven folders named `A`-`K`, each of which contains one signal snapshot dataset. If you want to read the GNSS signal snapshot with index `19` from the dataset stored in the directory `data/J`, then type
 
 ```python repl
 >>> import dataset
